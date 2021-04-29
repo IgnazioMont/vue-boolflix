@@ -22,7 +22,7 @@ body {
 /* HEADER */
 header .header-content {
     background-color: black;
-    padding: 0 5%;
+    padding: 0 3%;
     min-width: 685px;
 }
 .header-content {
@@ -34,6 +34,7 @@ header .header-content {
 .header-content .logo {
     width: 250px;
     padding: 15px;
+    padding-left: 0;
 }
 .searchbar {
     display: flex;
@@ -43,6 +44,9 @@ header .header-content {
 .searchbar .flag {
     width: 25px;
     margin-left: 10px;
+}
+.searchbar .flag:hover {
+    transform: scale(1.1);
 }
 .searchbar input {
     font-style: italic;
@@ -54,6 +58,72 @@ header .header-content {
     color: white;
     margin-left: 10px;
     font-size: 25px;
+}
+
+
+/* MAIN */
+.main-container {
+    max-width: 1400px;
+    margin: auto;
+    padding: 30px 0;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    min-width: 685px;
+}
+.main-title {
+    text-align: center;
+    margin: 60px 0 30px 0;
+    text-transform: uppercase;
+}
+.main-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.main-card .card {
+    width: 200px;
+    height: 300px;
+    margin: 10px;
+    overflow: hidden;
+}
+
+.image-card {
+    position: relative;
+}
+
+.text-card {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity .6s;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+.card .content-card:hover .text-card {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.8);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card .title {
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 30px;
 }
 
 

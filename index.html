@@ -29,18 +29,65 @@
                 <div class="header-content">
                     <!-- Logo -->
                     <div class="logo">
-                        <img class="pointer" src="img/Netflix-Logo.png" alt="Netflix logo">
+                        <a href="index.html"><img class="pointer" src="img/Netflix-Logo.png" alt="Netflix logo"></a>
+                        
                     </div>
                     <!-- Searchbar -->
                     <div class="searchbar">
-                        <input type="text" placeholder="Cerca un titolo">
-                        <i class="pointer fas fa-search"></i>
+                        <input type="text" v-model="inputUtente" @keyup.enter="searchUtente" placeholder="Cerca un titolo">
+                        <i class="pointer fas fa-search" @click="searchUtente"></i>
                         <img class="pointer flag" src="img/flag-italy.png">
                         <img class="pointer flag" src="img/flag-uk.png">
                     </div>
                 </div>
-                
             </header>
+
+            <!-- MAIN -->
+            <main>
+                <div class="main-container">
+                    <!-- Prossime uscite(default) o risultato ricerca -->
+                    <div class="main-title">
+                        <h1>{{ titleH1 }}</h1>
+                    </div>
+
+                    <!-- Cards -->
+                    <div class="main-card">
+                        <!-- Accediamo al singolo video (elemento film o serieTV) contenuto nell'array -->
+                        <div class="card" v-for="video in showVideo">
+                            <div class="content-card">
+                                <!-- Immagine card -->
+                                <div class="image-card">
+                                    <!-- Se l'immagine non è presente o undefined mettiamo una img preview provvissoria -->
+                                    <img v-if="video.poster_path == '' || video.poster_path == undefined" src="img/empty.png">
+                                    <!-- Altrimenti l'immagine viene ricavata dalla richiesta -->
+                                    <img v-else :src=`https://image.tmdb.org/t/p/w342/${video.poster_path}`>
+                                    
+                                    <!-- Description text -->
+                                    <div class="text-card pointer">
+                                        <!-- Title video, mostro il titolo del film o della serie TV (hanno 2 chiavi diverse)
+                                        Se il nome è del film(title) mostralo, altrimenti mostra quello della serieTV(name) -->
+                                        <p class="title">{{ video.title ? video.title : video.name }}</p>
+                                        <!-- Mostra anche il titolo originale, se del film o della serie TV -->
+                                        <p v-if="video.title != video.original_title || video.name != video.original_name">
+                                            "{{ video.original_title ? video.original_title : video.original_name }}"
+                                        </p>
+
+                                        <!-- Stars -->
+                                        <div class="stars"> </div>
+
+                                        <!-- Overview -->
+                                        <div class="overview-content"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            
+
+            <!-- FOOTER ? -->
+            <footer></footer>
         </div>
     </div>
 
