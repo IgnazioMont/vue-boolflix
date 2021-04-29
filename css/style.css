@@ -1,0 +1,71 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+img {
+    width: 100%;
+    display: block;
+}
+
+/* COMMON */
+body {
+    background-color: #141e27;
+    font-family: 'Titillium Web', sans-serif;
+}
+.pointer {
+    cursor: pointer;
+}
+
+
+/* HEADER */
+header .header-content {
+    background-color: black;
+    padding: 0 5%;
+    min-width: 685px;
+}
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+}
+.header-content .logo {
+    width: 250px;
+    padding: 15px;
+}
+.searchbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.searchbar .flag {
+    width: 25px;
+    margin-left: 10px;
+}
+.searchbar input {
+    font-style: italic;
+    padding: 5px;
+    border-radius: 10px;
+    outline: none;
+}
+.searchbar i {
+    color: white;
+    margin-left: 10px;
+    font-size: 25px;
+}
+
+
+/* SCROLLBAR */
+/* ::-webkit-scrollbar {
+    width: 8px;
+    background: #;
+}
+::-webkit-scrollbar-thumb {
+    background: #;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #;
+} */
