@@ -1,12 +1,12 @@
 //	My Netflix
 
-const boolZapp = new Vue({
+const myNetflix = new Vue({
 	el: "#root",
 
 	//	DATA
 	data: {
 		inputUtente:"",
-		/* lingua:"", */
+		lingua:"", // Setto la lingua di default nell'API in ITA
 		showVideo:[],
 		type: "",
 		apiKey:"d5038481a74eaddc438beabb2231c5bd",
@@ -17,7 +17,7 @@ const boolZapp = new Vue({
 	mounted() {
 		//	Chiamata iniziale "prossime uscite"
 		axios
-			.get(`${this.uri}/movie/upcoming?api_key=${this.apiKey}`)
+			.get(`${this.uri}/movie/upcoming?api_key=${this.apiKey}&language=it`)
 			.then((response) => {
 				this.showVideo = response.data.results;
 				this.type = "movie";
@@ -27,13 +27,13 @@ const boolZapp = new Vue({
 
 	//	METHODS
 	methods: {
-		/* Input dell'utente per la ricerca */
+		/* Input dell'utente per la ricerca + cambio H1 */
 		searchUtente() {
 			if (this.inputUtente != "") {
 				//	Chiamata sia di FILM che di SERIE TV con "/multy"
 				axios
 				//	Richiesta multipla a seconda della input
-					.get(`${this.uri}/search/multi?api_key=${this.apiKey}&query=${this.inputUtente}`)
+					.get(`${this.uri}/search/multi?api_key=${this.apiKey}&query=${this.inputUtente}&language=it`)
 					.then((response) => {
 						this.showVideo = response.data.results;
 						this.type = "";
@@ -58,7 +58,7 @@ const boolZapp = new Vue({
 			return whiteStars;
 		}
 
-		
+
 		//	Creare una diversificazione del risultato tra film e serieTV!!
 	}
 });

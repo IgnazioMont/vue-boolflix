@@ -29,7 +29,7 @@
                 <div class="header-content">
                     <!-- Logo -->
                     <div class="logo">
-                        <a href="index.html"><img class="pointer" src="img/Netflix-Logo.png" alt="Netflix logo"></a>
+                        <a href="index.html"><img class="pointer" src="img/Netflix-Logo.png" alt="My Netflix logo"></a>
                         
                     </div>
                     <!-- Searchbar -->
@@ -73,7 +73,7 @@
                                         </p>
 
                                         <!-- Tipologia risultato, film o serieTV -->
-                                        <p> {{ video.media_type || type }} </p>
+                                        <p class="type"> {{ video.media_type || type }} </p>
                                         
                                         <!-- Stars rating -->
                                         <div class="stars">
@@ -86,7 +86,22 @@
                                         <!-- Overview -->
                                         <div class="overview-content">
                                             <br>
+                                            <!-- Language flag images -->
+                                            <div class="lang">
+                                                Language: <img v-if="video.original_language == 'it'" src="img/Country flags/flags 16px/it_16.png">
 
+                                                <img v-else-if="video.original_language == 'en'" src="img/Country flags/flags 16px/gb_16.png">
+                                                <img v-else-if="video.original_language == 'ja'" src="img/Country flags/flags 16px/jp_16.png">
+                                                <img v-else-if="video.original_language == 'ko'" src="img/Country flags/flags 16px/kr_16.png">
+                                                <img v-else-if="video.original_language == 'fr'" src="img/Country flags/flags 16px/fr_16.png">
+                                                <img v-else-if="video.original_language == 'es'" src="img/Country flags/flags 16px/es_16.png">
+                                                <img v-else-if="video.original_language == 'de'" src="img/Country flags/flags 16px/de_16.png">
+                                                <img v-else-if="video.original_language == 'da'" src="img/Country flags/flags 16px/dk_16.png">
+                                                <img v-else-if="video.original_language == 'ru'" src="img/Country flags/flags 16px/ru_16.png">
+
+                                                <span v-else> <em>unknown</em></span>
+                                            </div>
+                                            
                                             <!-- Description -->
                                             <p class="overview"> <em>"{{ video.overview }}"</em> </p>
                                         </div>
@@ -99,9 +114,7 @@
                 </div>
             </main>
             
-
             <!-- FOOTER ? -->
-            <footer></footer>
         </div>
     </div>
 
