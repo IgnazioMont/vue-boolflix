@@ -40,8 +40,25 @@ const boolZapp = new Vue({
 						this.titleH1 = `Ecco la tua ricerca: ${this.inputUtente}`
 				});
 			}
+		},
+
+		//	Rating
+		yellowStars(vote) {
+			if(vote == undefined) {
+				return 0;
+			}
+			return Math.ceil(vote/2);
+		},
+		whiteStars(vote) {
+			if(vote == undefined) {
+				return 0;
+			}
+			let votoArrotondato = Math.ceil(vote/2);
+			let whiteStars = 5 - votoArrotondato;
+			return whiteStars;
 		}
 
-		//	Creare una diversificazione del risultato fra film e serieTV!!
+		
+		//	Creare una diversificazione del risultato tra film e serieTV!!
 	}
 });

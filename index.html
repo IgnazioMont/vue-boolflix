@@ -72,12 +72,26 @@
                                             "{{ video.original_title ? video.original_title : video.original_name }}"
                                         </p>
 
-                                        <!-- Stars -->
-                                        <div class="stars"> </div>
+                                        <!-- Tipologia risultato, film o serieTV -->
+                                        <p> {{ video.media_type || type }} </p>
+                                        
+                                        <!-- Stars rating -->
+                                        <div class="stars">
+                                            <!-- Mostra quante stelle gialle/bianche in base al rating calcolato su 5 (per eccesso) -->
+                                            <i class="fas fa-star yellow" v-for="star in yellowStars(video.vote_average)"></i>
+                                            <!-- Se non c'è valutazione o è "undefined" mostra solo stelle bianche -->
+                                            <i class="fas fa-star" v-for="star in whiteStars(video.vote_average)"></i>
+                                        </div>
 
                                         <!-- Overview -->
-                                        <div class="overview-content"></div>
+                                        <div class="overview-content">
+                                            <br>
+
+                                            <!-- Description -->
+                                            <p class="overview"> <em>"{{ video.overview }}"</em> </p>
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>

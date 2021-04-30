@@ -57,6 +57,7 @@ header .header-content {
 .searchbar i {
     color: white;
     margin-left: 10px;
+    margin-right: 22px;
     font-size: 25px;
 }
 
@@ -126,16 +127,30 @@ header .header-content {
     margin-top: 30px;
 }
 
+/* Overview */
+.overview-content {
+    height: 100%;
+    overflow-y: auto;
+}
+.overview {
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+.stars .yellow {
+    color: #ffa600;
+}
+
+
 
 /* SCROLLBAR */
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
     width: 8px;
-    background: #;
+    background: black;
 }
 ::-webkit-scrollbar-thumb {
-    background: #;
+    background: #2e465a;
     border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #;
-} */
+    background: #ec2724;
+}
