@@ -27,17 +27,38 @@
             <!-- HEADER -->
             <header>
                 <div class="header-content">
-                    <!-- Logo -->
-                    <div class="logo">
-                        <a href="index.html"><img class="pointer" src="img/Netflix-Logo.png" alt="My Netflix logo"></a>
-                        
+                    <!-- Logo + sections -->
+                    <div class="left-header">
+                        <a href="index.html"><img src="img/Netflix-Logo.png" alt="My Netflix logo"></a>
+                        <div class="sections">
+                            <a href="index.html">Home</a>
+                            <a href="#" @click="filmSelection">Film</a>
+                            <a href="#" @click="tvseriesSelection">Serie tv</a>
+                            <a href="#">Guarda di nuovo</a>
+                        </div>
                     </div>
                     <!-- Searchbar -->
                     <div class="searchbar">
                         <input type="text" v-model="inputUtente" @keyup.enter="searchUtente" placeholder="Cerca un titolo">
-                        <i class="pointer fas fa-search" @click="searchUtente"></i>
-                        <img class="pointer flag" src="img/flag-italy.png">
-                        <img class="pointer flag" src="img/flag-uk.png">
+                        <i class="fas fa-search" @click="searchUtente"></i>
+                        <i class="fas fa-gift"></i>
+                        <i class="fas fa-bell"></i>
+                        <!-- Profile -->
+                        <div class="profile">
+                            <img src="img/366be133850498.56ba69ac36858.png" alt="Profile img" title="My profile">
+                            <i @mouseover="mouseOver" class="fas " :class="dropdown ? 'fa-caret-up' : 'fa-caret-down'"></i>
+                            <div @mouseleave="mouseOver" v-show="dropdown" class="dropdown-menu">
+                                <ul>
+                                    <li><img src="img/profile1.png" alt="Profile img">Simone</li>
+                                    <li><img src="img/profile3.png" alt="Profile img">Alessandro</li>
+                                    <li><img src="img/profile2.png" alt="Profile img">Donato</li>
+                                    <li>Gestisci profili <hr> </li>
+                                    <li>Account</li>
+                                    <li>Centro assistenza</li>
+                                    <li>Esci da MyNetflix</li>
+                                </ul>
+                            </div>
+                        </div>                        
                     </div>
                 </div>
             </header>
@@ -63,7 +84,7 @@
                                     <img v-else :src=`https://image.tmdb.org/t/p/w342/${video.poster_path}`>
                                     
                                     <!-- Description text -->
-                                    <div class="text-card pointer">
+                                    <div class="text-card">
                                         <!-- Title video, mostro il titolo del film o della serie TV (hanno 2 chiavi diverse)
                                         Se il nome è del film(title) mostralo, altrimenti mostra quello della serieTV(name) -->
                                         <p class="title">{{ video.title ? video.title : video.name }}</p>
@@ -73,14 +94,14 @@
                                         </p>
 
                                         <!-- Tipologia risultato, film o serieTV -->
-                                        <p class="type"> {{ video.media_type || type }} </p>
+                                        <p class="type">Type: {{ video.media_type || type }} </p>
                                         
                                         <!-- Stars rating -->
                                         <div class="stars">
                                             <!-- Mostra quante stelle gialle/bianche in base al rating calcolato su 5 (per eccesso) -->
                                             <i class="fas fa-star yellow" v-for="star in yellowStars(video.vote_average)"></i>
                                             <!-- Se non c'è valutazione o è "undefined" mostra solo stelle bianche -->
-                                            <i class="fas fa-star" v-for="star in whiteStars(video.vote_average)"></i>
+                                            <i class="fas fa-star white" v-for="star in whiteStars(video.vote_average)"></i>
                                         </div>
 
                                         <!-- Overview -->
@@ -88,25 +109,25 @@
                                             <br>
                                             <!-- Language flag images -->
                                             <div class="lang">
-                                                Language: <img v-if="video.original_language == 'it'" src="img/Country flags/flags 16px/it_16.png">
+                                                Original language: <img v-if="video.original_language == 'it'" src="img/Country flags/flags 16px/it_16.png"> <!-- ITA -->
 
-                                                <img v-else-if="video.original_language == 'en'" src="img/Country flags/flags 16px/gb_16.png">
-                                                <img v-else-if="video.original_language == 'ja'" src="img/Country flags/flags 16px/jp_16.png">
-                                                <img v-else-if="video.original_language == 'ko'" src="img/Country flags/flags 16px/kr_16.png">
-                                                <img v-else-if="video.original_language == 'fr'" src="img/Country flags/flags 16px/fr_16.png">
-                                                <img v-else-if="video.original_language == 'es'" src="img/Country flags/flags 16px/es_16.png">
-                                                <img v-else-if="video.original_language == 'de'" src="img/Country flags/flags 16px/de_16.png">
-                                                <img v-else-if="video.original_language == 'da'" src="img/Country flags/flags 16px/dk_16.png">
-                                                <img v-else-if="video.original_language == 'ru'" src="img/Country flags/flags 16px/ru_16.png">
+                                                <img v-else-if="video.original_language == 'en'" src="img/Country flags/flags 16px/gb_16.png"> <!-- ENG -->
+                                                <img v-else-if="video.original_language == 'ja'" src="img/Country flags/flags 16px/jp_16.png"> <!-- JAP -->
+                                                <img v-else-if="video.original_language == 'ko'" src="img/Country flags/flags 16px/kr_16.png"> <!-- KOR -->
+                                                <img v-else-if="video.original_language == 'fr'" src="img/Country flags/flags 16px/fr_16.png"> <!-- FR -->
+                                                <img v-else-if="video.original_language == 'es'" src="img/Country flags/flags 16px/es_16.png"> <!-- ESP -->
+                                                <img v-else-if="video.original_language == 'de'" src="img/Country flags/flags 16px/de_16.png"> <!-- DE -->
+                                                <img v-else-if="video.original_language == 'da'" src="img/Country flags/flags 16px/dk_16.png"> <!-- DAN -->
+                                                <img v-else-if="video.original_language == 'ru'" src="img/Country flags/flags 16px/ru_16.png"> <!-- RU -->
 
-                                                <span v-else> <em>unknown</em></span>
+                                                <span v-else> <em>unknown</em> </span>
                                             </div>
                                             
                                             <!-- Description -->
-                                            <p class="overview"> <em>"{{ video.overview }}"</em> </p>
+                                            <p v-if="video.overview.length > 0" class="overview"> <em>"{{ video.overview }}"</em> </p>
+                                            <p v-else>Overview: <em>unknown</em> </p>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
