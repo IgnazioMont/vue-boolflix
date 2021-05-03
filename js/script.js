@@ -34,20 +34,17 @@ const myNetflix = new Vue({
             this.dropdown = !this.dropdown;   
         },
 
-		// BUG ------> sistemare il "type"
 		/* Input dell'utente per la ricerca + cambio H1 */
 		searchUtente() {
-			if(this.inputUtente.length > 0) {
-				//	Chiamata sia di FILM che di SERIE TV con "/multy"
-				axios
-				//	Richiesta multipla a seconda della input
-					.get(`${this.uri}/search/multi?api_key=${this.apiKey}&query=${this.inputUtente}&language=it`)
-					.then((response) => {
-						this.showVideo = response.data.results;
-						this.type = "";
-						this.titleH1 = `La tua ricerca: ${this.inputUtente}`;
-				});
-			}
+			//	Chiamata sia di FILM che di SERIE TV con "/multy"
+			axios
+			//	Richiesta multipla a seconda della input
+				.get(`${this.uri}/search/multi?api_key=${this.apiKey}&query=${this.inputUtente}&language=it`)
+				.then((response) => {
+					this.showVideo = response.data.results;
+					this.type = "";
+					this.titleH1 = `La tua ricerca: ${this.inputUtente}`;
+			});
 		},
 
 		//	Selezione/ricerca FILM al click + al search come filtro

@@ -54,6 +54,11 @@ header .header-content {
     text-decoration: none;
     font-weight: bolder;
 }
+.left-header .sections a:hover {
+    color: #a0a0a0;
+    transform: scale(1.2);
+    transition: transform .1s;
+}
 .searchbar {
     display: flex;
     justify-content: space-between;
@@ -152,6 +157,7 @@ header .header-content {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    padding-bottom: 80px;
 }
 .main-card .card {
     width: 240px;
@@ -226,7 +232,6 @@ header .header-content {
     margin-left: -1px;
 }
 
-/* FOOTER */
 
 /* SCROLLBAR */
 ::-webkit-scrollbar {
@@ -240,9 +245,3 @@ header .header-content {
 ::-webkit-scrollbar-thumb:hover {
     background: #ec2724;
 }
-
-
-/* MEDIA QUERY */
-/* @media all and (Max-width: 768px) {
-
-} */
